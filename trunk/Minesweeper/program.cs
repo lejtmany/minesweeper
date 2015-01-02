@@ -14,7 +14,8 @@ namespace Minesweeper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Board board = new Board(25, 25);
+            Board board = new Board(25, 25, 100);
+            board.start();
             Minesweeper gui = new Minesweeper(board);
             MinesweeperController controller = new MinesweeperController(gui,board);        
             Application.Run(gui);

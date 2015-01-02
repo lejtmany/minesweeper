@@ -23,3 +23,4 @@ C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\De
 C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\FluentAssertions.Core.xml
 C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\obj\Debug\Minesweeper.Minesweeper.resources
 C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.Cache
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\obj\Debug\Minesweeper.csprojResolveAssemblyReference.cache
