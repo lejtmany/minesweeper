@@ -177,7 +177,8 @@ namespace Minesweeper
                     if (!wasChecked[adjacentSquare.X, adjacentSquare.Y])
                         nonCheckedButtons.Add(adjacentSquare);
                     wasChecked[adjacentSquare.X, adjacentSquare.Y] = true;
-                    adjacentSquare.isOpen = true;
+                    if (!adjacentSquare.IsFlag)
+                        adjacentSquare.isOpen = true;
                 }
                 foreach (var nonOpenSquare in nonCheckedButtons)
                 {
