@@ -189,7 +189,9 @@ namespace Minesweeper
 
         internal void ClickSquare(BoardSquare square)
         {
-            if (square.value == BoardSquare.BOMB)
+            if (gameOver)
+                return;
+            else if (square.value == BoardSquare.BOMB)
                 GameOver();
             else if (square.IsFlag || square.isOpen)
                 return;
