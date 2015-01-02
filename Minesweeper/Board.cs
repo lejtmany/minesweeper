@@ -8,11 +8,11 @@ namespace Minesweeper
 {
     class Board
     {
+        private bool[,] wasChecked;
         public int amountOfBombs{get; private set;}
         public int width {get; private set;}
         public int height{get; private set;}
         public BoardSquare[,] squares{get; private set;}
-        public bool[,] wasChecked;
         public bool gameOver { get; private set; }
 
         public Board(int width, int height)
@@ -134,14 +134,9 @@ namespace Minesweeper
 
         private void TryAddAdjacentSquare(BoardSquare square, List<BoardSquare> adjacentSquares, int i, int j)
         {
-            try
-            {
-                adjacentSquares.Add(GetSquare(square.X + i, square.Y + j));
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                //Do nothing. Don't add square.
-            }
+            if (square.X + i < 0 || square.X + i >= width || square.Y + j < 0 || square.Y + j >= height)
+                    return;
+            adjacentSquares.Add(GetSquare(square.X + i, square.Y + j));
         }
 
         
@@ -159,16 +154,18 @@ namespace Minesweeper
         {           
             if (square.value == 0)
             {
-                var nonOpenButtons = new List<BoardSquare>();
-                foreach (var adjacentSquare in GetAdjacentSquares(square))
+                var nonCheckedButtons = new List<BoardSquare>();
+                var adjacentSquares = GetAdjacentSquares(square);
+                foreach (var adjacentSquare in adjacentSquares)
                 {
                     if (!wasChecked[adjacentSquare.X, adjacentSquare.Y])
-                        nonOpenButtons.Add(adjacentSquare);
+                        nonCheckedButtons.Add(adjacentSquare);
                     wasChecked[adjacentSquare.X, adjacentSquare.Y] = true;
+                    adjacentSquare.isOpen = true;
                 }
-                foreach (var nonOpenSquare in nonOpenButtons)
+                foreach (var nonOpenSquare in nonCheckedButtons)
                 {
-                    ClickSquare(nonOpenSquare);
+                    OpenZeros(nonOpenSquare);
                 }
             }                              
             }              
@@ -183,7 +180,7 @@ namespace Minesweeper
             {
                 square.isOpen = true;
                 OpenZeros(square);
-             //   ResetCheckedArray();
+               
             }
         }
 
