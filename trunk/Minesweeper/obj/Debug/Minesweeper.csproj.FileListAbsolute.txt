@@ -11,3 +11,15 @@ C:\Users\Miriam\Google Drive\Visual Studio\Minesweeper\Minesweeper\obj\Debug\Min
 C:\Users\Miriam\Google Drive\Visual Studio\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.Cache
 C:\Users\Miriam\Google Drive\Visual Studio\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe
 C:\Users\Miriam\Google Drive\Visual Studio\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\obj\Debug\Minesweeper.exe
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\Minesweeper.exe
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\Minesweeper.pdb
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\FluentAssertions.Core.dll
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\FluentAssertions.dll
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\FluentAssertions.pdb
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\FluentAssertions.xml
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\FluentAssertions.Core.pdb
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bin\Debug\FluentAssertions.Core.xml
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\obj\Debug\Minesweeper.Minesweeper.resources
+C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.Cache
