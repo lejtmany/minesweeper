@@ -51,12 +51,12 @@ namespace Minesweeper
             updateView(modelSquare);
         }
 
-        private void updateView(BoardSquare selectedButton)
+        private void updateView(BoardSquare selectedSquare)
         {
             BoardSquare square;
 
-            if (selectedButton.value == BoardSquare.BOMB)
-                gui.buttonArray[selectedButton.X, selectedButton.Y].BackColor = Color.Red;
+            if (selectedSquare.value == BoardSquare.BOMB && board.gameOver)
+                gui.buttonArray[selectedSquare.X, selectedSquare.Y].BackColor = Color.Red;
 
             for (int i = 0; i < board.Width; i++)
                 for (int j = 0; j < board.Height; j++)
