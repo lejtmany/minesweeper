@@ -43,6 +43,12 @@ namespace Minesweeper
                for (int j = 0; j < board.Height; j++)
                {
                    square = board.GetSquare(i, j);
+                   if (board.gameOver)
+                   {
+                       if (square.value == BoardSquare.BOMB)
+                           gui.buttonArray[i, j].Image = new Bitmap(new Bitmap(@"C:\Users\Miriam\Google Drive\Visual Studio\minesweeper-mco368\Minesweeper\bomb-icon.png"), gui.buttonArray[i, j].Width - 5, gui.buttonArray[i, j].Height - 5);
+
+                   }
                    if (square.isOpen)
                    {
                        gui.buttonArray[i, j].Text = square.value.ToString();
