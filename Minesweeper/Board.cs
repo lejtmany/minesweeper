@@ -9,19 +9,34 @@ namespace Minesweeper
     class Board
     {
         private bool[,] wasChecked;
-        public int amountOfBombs{get; private set;}
-        public int width {get; private set;}
-        public int height{get; private set;}
-        public BoardSquare[,] squares{get; private set;}
+        private int amountOfBombs;
+        public int AmountOfBombs
+        {
+            get { return amountOfBombs; }
+            private set
+            {
+                if (value < Width * Height)
+                    this.amountOfBombs = value;
+                else
+                    throw new ArgumentOutOfRangeException(String.Format("Can't have {0} bombs. Can't have more bombs than game squares", value));
+            }
+        }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public BoardSquare[,] squares { get; private set; }
         public bool gameOver { get; private set; }
 
-        public Board(int width, int height)
+        public Board(int width, int height, int amountOfBombs)
         {
-            this.width = width;
-            this.height = height;
-            amountOfBombs = 9;
+            this.Width = width;
+            this.Height = height;
+            this.amountOfBombs = amountOfBombs;
             squares = new BoardSquare[width, height];
             wasChecked = new bool[width, height];
+        }
+
+        public void start()
+        {
             FillBoardSquares();
             SeedBoard();
         }
@@ -35,7 +50,7 @@ namespace Minesweeper
 
         public BoardSquare GetSquare(int x, int y)
         {
-           //(0,0) is top left
+            //(0,0) is top left
             try
             {
                 return squares[x, y];
@@ -76,14 +91,14 @@ namespace Minesweeper
         internal List<BoardSquare> GetRandomSquares(int seed)
         {
             int randomX, randomY, randomSquareCounter = 0;
-            bool[,] squares = new bool[width, height];
+            bool[,] squares = new bool[Width, Height];
             var randomSquares = new List<BoardSquare>();
             Random generator = new Random(seed);
 
             while (randomSquareCounter < amountOfBombs)
             {
-                randomX = generator.Next() % width;
-                randomY = generator.Next() % height;
+                randomX = generator.Next() % Width;
+                randomY = generator.Next() % Height;
                 if (!squares[randomX, randomY])
                 {
                     squares[randomX, randomY] = true;
@@ -97,20 +112,20 @@ namespace Minesweeper
 
         internal void PlaceBombs(List<BoardSquare> randomSquares)
         {
-           foreach(var square in randomSquares)
-               square.value = BoardSquare.BOMB;                 
+            foreach (var square in randomSquares)
+                square.value = BoardSquare.BOMB;
         }
 
         internal void FillBoardValues()
         {
             List<BoardSquare> squares = GetSquaresList();
-            foreach(BoardSquare square in squares)
+            foreach (BoardSquare square in squares)
+            {
+                if (square.value != BoardSquare.BOMB)
                 {
-                    if (square.value != BoardSquare.BOMB)
-                    {
-                        FillSquareValue(square);
-                    }
+                    FillSquareValue(square);
                 }
+            }
         }
 
         private List<BoardSquare> FillSquareValue(BoardSquare square)
@@ -120,7 +135,7 @@ namespace Minesweeper
             return adjacentSquares;
         }
 
-        
+
 
         internal List<BoardSquare> GetAdjacentSquares(BoardSquare square)
         {
@@ -134,16 +149,17 @@ namespace Minesweeper
 
         private void TryAddAdjacentSquare(BoardSquare square, List<BoardSquare> adjacentSquares, int i, int j)
         {
-            if (square.X + i < 0 || square.X + i >= width || square.Y + j < 0 || square.Y + j >= height)
-                    return;
+            if (square.X + i < 0 || square.X + i >= Width || square.Y + j < 0 || square.Y + j >= Height)
+                return;
             adjacentSquares.Add(GetSquare(square.X + i, square.Y + j));
         }
 
-        
+
         internal int CountBombs(List<BoardSquare> adjacentSquares)
         {
             int bombCount = 0;
-            foreach(BoardSquare square in adjacentSquares){
+            foreach (BoardSquare square in adjacentSquares)
+            {
                 if (square.value == BoardSquare.BOMB)
                     bombCount++;
             }
@@ -151,7 +167,7 @@ namespace Minesweeper
         }
 
         internal void OpenZeros(BoardSquare square)
-        {           
+        {
             if (square.value == 0)
             {
                 var nonCheckedButtons = new List<BoardSquare>();
@@ -167,8 +183,8 @@ namespace Minesweeper
                 {
                     OpenZeros(nonOpenSquare);
                 }
-            }                              
-            }              
+            }
+        }
 
         internal void ClickSquare(BoardSquare square)
         {
@@ -180,7 +196,7 @@ namespace Minesweeper
             {
                 square.isOpen = true;
                 OpenZeros(square);
-               
+
             }
         }
 
@@ -203,7 +219,7 @@ namespace Minesweeper
             {
                 s += "\n";
                 for (int width = 0; width < squares.GetLength(1); width++)
-                    s +=   String.Format(" {0} ",(GetSquare(width, height).value == BoardSquare.BOMB) ? "X" : GetSquare(width, height).value.ToString());
+                    s += String.Format(" {0} ", (GetSquare(width, height).value == BoardSquare.BOMB) ? "X" : GetSquare(width, height).value.ToString());
             }
             return s;
         }

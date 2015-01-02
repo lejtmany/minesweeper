@@ -39,8 +39,8 @@ namespace Minesweeper
         private void updateView()
         {
             BoardSquare square;
-            for(int i = 0; i < board.width; i++)
-               for (int j = 0; j < board.height; j++)
+            for(int i = 0; i < board.Width; i++)
+               for (int j = 0; j < board.Height; j++)
                {
                    square = board.GetSquare(i, j);
                    if (square.isOpen)

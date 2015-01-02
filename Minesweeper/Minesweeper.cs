@@ -19,7 +19,7 @@ namespace Minesweeper
          public Minesweeper(Board board)
         {
             this.board = board;
-            buttonArray = new MinesweeperButton[board.width, board.height];
+            buttonArray = new MinesweeperButton[board.Width, board.Height];
             InitializeComponent();       
             this.SuspendLayout();
             AddButtons();
@@ -33,8 +33,8 @@ namespace Minesweeper
         {
             MinesweeperButton button;
             
-            for(int i = 0; i < board.height; i++)
-                for (int j = 0; j < board.width; j++)
+            for(int i = 0; i < board.Height; i++)
+                for (int j = 0; j < board.Width; j++)
                 {
                     buttonArray[j, i] = new MinesweeperButton();
                     buttonArray[j, i].Location = new System.Drawing.Point(i * buttonSize.Height, j * buttonSize.Width);
