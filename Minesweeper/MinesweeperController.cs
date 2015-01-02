@@ -8,15 +8,22 @@ using System.Windows.Forms;
 
 namespace Minesweeper
 {
+    
     class MinesweeperController
     {
+         
         internal Board board;
         private Minesweeper gui;
+        readonly Image bombImage;
+        readonly Image flagImage;
+        
 
         public MinesweeperController(Minesweeper gui, Board board)
         {
             this.board = board;
             this.gui = gui;
+            bombImage = new Bitmap(new Bitmap(@"..\..\bomb-icon.png"), gui.buttonArray[0, 0].Width - 5, gui.buttonArray[0, 0].Height - 5);
+            flagImage = new Bitmap(new Bitmap(@"..\..\flag-icon.png"), gui.buttonArray[0, 0].Width - 5, gui.buttonArray[0, 0].Height - 5);
             SetUpButtonHandlers();
         }
 
@@ -34,6 +41,8 @@ namespace Minesweeper
         {
             if (e.Button == MouseButtons.Right)
             {
+                if (board.gameOver)
+                    return;
                 MinesweeperButton button = (MinesweeperButton)sender;
                 Point buttonLocation = button.Coordinates;
                 BoardSquare modelSquare = board.GetSquare(buttonLocation.X, buttonLocation.Y);
@@ -44,6 +53,8 @@ namespace Minesweeper
 
         private void button_Click(object sender, EventArgs e)
         {
+            if (board.gameOver)
+                return;
             MinesweeperButton button = (MinesweeperButton)sender;
             Point buttonLocation = button.Coordinates;
             BoardSquare modelSquare = board.GetSquare(buttonLocation.X, buttonLocation.Y);
@@ -67,12 +78,13 @@ namespace Minesweeper
                     {
                         if (square.value == BoardSquare.BOMB)
                         {
-                            gui.buttonArray[i, j].Image = new Bitmap(new Bitmap(@"..\..\bomb-icon.png"), gui.buttonArray[i, j].Width - 5, gui.buttonArray[i, j].Height - 5);
+                            gui.buttonArray[i, j].Image = bombImage;                           
                         }
 
                     }
                     if (square.IsFlag)
-                        gui.buttonArray[i, j].Image = new Bitmap(new Bitmap(@"..\..\flag-icon.png"), gui.buttonArray[i, j].Width - 5, gui.buttonArray[i, j].Height - 5);
+                        gui.buttonArray[i, j].Image = flagImage;
+                    
                     if (square.isOpen)
                     {
                         gui.buttonArray[i, j].Text = square.value.ToString();
