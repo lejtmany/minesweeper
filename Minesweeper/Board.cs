@@ -190,7 +190,7 @@ namespace Minesweeper
         {
             if (square.value == BoardSquare.BOMB)
                 GameOver();
-            else if (square.value == BoardSquare.FLAG || square.isOpen)
+            else if (square.IsFlag || square.isOpen)
                 return;
             else
             {
