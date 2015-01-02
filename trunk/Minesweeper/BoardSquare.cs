@@ -12,8 +12,8 @@ namespace Minesweeper
         public int value { get; internal set; }
         public int X { get; private set; }
         public int Y { get; private set; }
-        public readonly static int BOMB = -1;
-        public readonly static int FLAG = -2;
+        public bool IsFlag { get; set; }
+        public readonly static int BOMB = -1;        
 
         public BoardSquare(int X, int Y)
         {
