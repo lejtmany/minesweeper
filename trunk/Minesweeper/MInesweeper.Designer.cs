@@ -28,21 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(59, -1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
+            // 
+            // Minesweeper
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.label1);
             this.Name = "Minesweeper";
             this.Text = "Minesweeper";
             this.Load += new System.EventHandler(this.Minesweeper_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
-            this.Name = "Minesweeper";
-            this.Text = "Minesweeper";
-            this.Load += new System.EventHandler(this.Minesweeper_Load);
-            this.ResumeLayout(false);
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
 
     }
 }
