@@ -23,8 +23,9 @@ namespace Minesweeper
             InitializeComponent();       
             this.SuspendLayout();
             AddButtons();
+            this.label1.Width = this.Width;
             this.AutoSize = true;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;            
             this.ResumeLayout(true);          
         }
 
@@ -37,7 +38,7 @@ namespace Minesweeper
                 for (int j = 0; j < board.Width; j++)
                 {
                     buttonArray[j, i] = new MinesweeperButton();
-                    buttonArray[j, i].Location = new System.Drawing.Point(i * buttonSize.Height, j * buttonSize.Width);
+                    buttonArray[j, i].Location = new System.Drawing.Point(i * buttonSize.Height, j * buttonSize.Width + label1.Height);
                     buttonArray[j, i].Name = "button" + (j + (i * j));
                     buttonArray[j, i].Coordinates = new Point(j, i);
                     buttonArray[j, i].Size = buttonSize;
@@ -47,10 +48,15 @@ namespace Minesweeper
 
         }
 
+        public void setLabelText(String message)
+        {
+            label1.Text = message;
+        }
+
        
         private void Minesweeper_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 
