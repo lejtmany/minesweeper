@@ -16,15 +16,18 @@ namespace Minesweeper
         private Minesweeper gui;
         readonly Image bombImage;
         readonly Image flagImage;
+        private int BombsRemaining;
         
 
         public MinesweeperController(Minesweeper gui, Board board)
         {
             this.board = board;
             this.gui = gui;
+            BombsRemaining = board.AmountOfBombs;
             bombImage = new Bitmap(new Bitmap(@"..\..\bomb-icon.png"), gui.buttonArray[0, 0].Width - 5, gui.buttonArray[0, 0].Height - 5);
             flagImage = new Bitmap(new Bitmap(@"..\..\flag-icon.png"), gui.buttonArray[0, 0].Width - 5, gui.buttonArray[0, 0].Height - 5);
             SetUpButtonHandlers();
+            gui.setLabelText("Bombs Remaining: " + BombsRemaining);
         }
 
         private void SetUpButtonHandlers()
@@ -46,6 +49,10 @@ namespace Minesweeper
                 MinesweeperButton button = (MinesweeperButton)sender;
                 Point buttonLocation = button.Coordinates;
                 BoardSquare modelSquare = board.GetSquare(buttonLocation.X, buttonLocation.Y);
+                if (modelSquare.IsFlag)
+                    BombsRemaining++;
+                else
+                    BombsRemaining--;
                 modelSquare.IsFlag = !modelSquare.IsFlag;
                 updateView(modelSquare);
             }
@@ -90,6 +97,8 @@ namespace Minesweeper
                         gui.buttonArray[i, j].Text = square.value.ToString();
                         gui.buttonArray[i, j].Enabled = false;
                     }
+
+                    gui.setLabelText("Bombs Remaining: " + BombsRemaining);
                 }
         }
 
