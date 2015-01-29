@@ -33,7 +33,6 @@ namespace Minesweeper
         private void AddButtons()
         {
             MinesweeperButton button;
-            
             for(int i = 0; i < board.Height; i++)
                 for (int j = 0; j < board.Width; j++)
                 {
